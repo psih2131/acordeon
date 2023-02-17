@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Work</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=divice-width, initial-scale=1.0">
+	<meta name="description" content="">
+
+</head>
+
+<body>
+
+	<div id="app">
+		<!-- <section class="project-sec">
+			<div class="acordeon">
+				<div class="acordeon__wrapper">
+					<div class="acordeon__element" v-for="(item, index) in items" :key="index"
+						:class="{ 'bg': activeIndex === index }">
+						<div class="acordeon__element-header" :class="{ 'active': activeIndex === index }"
+							@click="activeIndex = index">
+							<p class="acordeon__element-title">{{ item.title }}</p>
+							<div class="acordeon__element-ar" :class="{ 'active': activeIndex === index }">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10L12 15L17 10" stroke="#0D2A54" stroke-width="2" />
+								</svg>
+							</div>
+						</div>
+						<div class="acordeon__element-body" :class="{ 'show': activeIndex === index }"
+							v-html="item.content">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section> -->
+
+		<section class="project-sec">
+			<div class="acordeon">
+				<div class="acordeon__wrapper">
+					<div class="acordeon__element" v-for="(item, index) in items" :key="index"
+						:class="{ 'bg': activeIndexes.includes(index) }">
+						<div class="acordeon__element-header" :class="{ 'active': activeIndexes.includes(index) }"
+							@click="toggle(index)">
+							<p class="acordeon__element-title">{{ item.title }}</p>
+							<div class="acordeon__element-ar" :class="{ 'active': activeIndexes.includes(index) }">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10L12 15L17 10" stroke="#0D2A54" stroke-width="2" />
+								</svg>
+							</div>
+						</div>
+						<div class="acordeon__element-body" :class="{ 'show': activeIndexes.includes(index) }"
+							v-html="item.content">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<script src="https://unpkg.com/vue@next"></script>
+	<script>
+		const app = Vue.createApp({
+			data() {
+				return {
+					items: [
+						{
+							title: 'The analysis',
+							content: `
+								<ul class="acordeon__list">
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+								</ul>`
+						},
+						{
+							title: 'Our data',
+							content: `
+								<ul class="acordeon__list">
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+								</ul>`
+						},
+						{
+							title: 'Our study case',
+							content: `
+								<ul class="acordeon__list">
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+								</ul>`
+						},
+						{
+							title: 'Hands on analyzing',
+							content: `
+								<ul class="acordeon__list">
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+									<li>Do you have one user in more than one variant of the same AB test?</li>
+								</ul>`
+						}
+					],
+					activeIndexes: [],
+				}
+			},
+			// methods: {
+			// 	toggleAccordion(index) {
+			// 		this.activeIndex = (this.activeIndex === index) ? null : index;
+			// 	}
+			// }
+			methods: {
+				toggle(index) {
+					if (this.activeIndexes.includes(index)) {
+						// remove index if already in the array
+						this.activeIndexes.splice(this.activeIndexes.indexOf(index), 1);
+					} else {
+						// add index to the array
+						this.activeIndexes.push(index);
+					}
+				}
+			}
+		})
+
+		app.mount('#app');
+	</script>
+</body>
+
+</html>
